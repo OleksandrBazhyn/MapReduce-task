@@ -8,7 +8,7 @@ public class DailyCategoryMapper extends Mapper<LongWritable, Text, Text, LongWr
     private final LongWritable outValue = new LongWritable();
 
     @Override
-    public void map(LongWritable offset, Text line, Context context) throws IOException, InterruptedException {
+    protected void map(LongWritable offset, Text line, Context context) throws IOException, InterruptedException {
         String[] s = line.toString()
         if (s.length != 4) {
             throw new IOException("Invalid number of columns: " + line);
