@@ -9,15 +9,15 @@ public class DailyCategoryMapper extends Mapper<LongWritable, Text, Text, LongWr
 
     @Override
     protected void map(LongWritable offset, Text line, Context context) throws IOException, InterruptedException {
-        String[] s = line.toString()
-        if (s.length != 4) {
-            throw new IOException("Invalid number of columns: " + line);
-        }
-        if (s.startsWith("user_id")) {
+        String s = line.toString();
+        if (s.length() == 0 || s.startsWith("user_id")) {
             return;
         }
         
-        String f = s.split(",");
+        String[] f = s.split(",");
+        if (f.length != 4) {
+            throw new IOException("Invalid number of columns: " + line);
+        }
         String date = f[1].substring(0, 10);
         long cents = Math.round(Double.parseDouble(f[3]) * 100);
 

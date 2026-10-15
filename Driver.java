@@ -8,6 +8,11 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class Driver {
     public static void main(String[] args) throws Exception {
+        if (args.length < 2) {
+            System.err.println("Usage: Driver <input path> <output path>");
+            System.exit(2);
+        }
+
         Configuration conf = new Configuration();
 
         Job job1 = Job.getInstance(conf, "Job: daily total per category");
