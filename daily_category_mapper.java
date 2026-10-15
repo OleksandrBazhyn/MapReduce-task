@@ -1,3 +1,8 @@
+import java.io.IOException;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+
 public class DailyCategoryMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
     private final Text outKey = new Text();
     private final LongWritable outValue = new LongWritable();
